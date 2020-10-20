@@ -1,14 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import {createStore} from 'redux'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+
+import App from './components/test';
+import {counter} from './redux/reducers'
+
+const store = createStore(counter)
+
+const render = () => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App store={store} />
+    </React.StrictMode>,
+    document.getElementById('root')
+  )
+};
+
+render()
+
+store.subscribe(render)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
