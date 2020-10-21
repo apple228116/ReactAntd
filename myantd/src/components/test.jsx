@@ -1,26 +1,23 @@
 import React, { Component } from 'react'
 import {Button} from 'antd-mobile';
-import * as actions from '../redux/action'
 import PropTypes from 'prop-types'
 
 export default class test extends Component {
-
-  static propTypes = {
-    store: PropTypes.object.isRequired
+  
+  static propTypes =  {
+    increment: PropTypes.func.isRequired,
+    decrement: PropTypes.func.isRequired,
+    count: PropTypes.number.isRequired
   }
-
+  
   increment = () => {
-    const number = Number(this.input.value)
-    this.props.store.dispatch(actions.increment(number))
+    let num = Number(this.input.value)
+    this.props.increment(num)
   }
 
   decrement = () => {
-    const number = Number(this.input.value)
-    this.props.store.dispatch(actions.decrement(number))
-  }
-
-  state = {
-    num: 0
+    let num = Number(this.input.value)
+    this.props.decrement(num)
   }
 
   // culculateAdd = () => {
@@ -44,7 +41,7 @@ export default class test extends Component {
   render() {
     return (
       <div>
-        <header>there is {this.props.store.getState()} caixukun!</header>
+        <header>there is {this.props.count} caixukun!</header>
         <div className='btnBox leftStart'>
           <input type='number' placeholder='鸡你太美！' ref={input=>this.input=input} />
           <Button size='small' type='primary' onClick={this.increment} >添加</Button>
